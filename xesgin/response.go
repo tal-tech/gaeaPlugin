@@ -121,3 +121,19 @@ func Respond(ctx *gin.Context, status int, xe logger.XesError, data interface{})
 	}
 	ctx.JSON(status, resp)
 }
+
+func SuccessV2(v interface{}) map[string]interface{} {
+	ret := map[string]interface{}{"stat": 1, "code": 0, "msg": "ok", "data": v}
+	return ret
+}
+
+func ErrorV2(err error) map[string]interface{} {
+	e := logger.NewError(err)
+	ret := map[string]interface{}{"stat": 0, "code": e.Code, "msg": e.Message, "data": e.Info}
+	return ret
+}
+
+func RawV2(stat, code int, msg string) map[string]interface{} {
+	ret := map[string]interface{}{"stat": stat, "code": code, "msg": msg, "data": nil}
+	return ret
+}
