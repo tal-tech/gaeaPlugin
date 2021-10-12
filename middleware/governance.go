@@ -21,8 +21,8 @@ var (
 	hostname, _ = os.Hostname()
 )
 
-// XesLoggerMiddleware 创建logger相关
-func XesLoggerMiddleware() gin.HandlerFunc {
+// LoggerMiddleware 创建logger相关
+func LoggerMiddleware() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		ctx.Set("logid", strconv.FormatInt(logger.Id(), 10))
 		ctx.Set("hostname", hostname)
